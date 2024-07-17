@@ -28,7 +28,7 @@ fun DownloadModuleConfirmationDialog(state: MutableState<Boolean>, onClickConfir
             )
         },
         title = { Text("Download Dynamic Feature Module") },
-        text = { Text("Your requested customer support module need to be downloaded from Google Play Store. Download size is about 18 MB.") },
+        text = { Text("Your requested module need to be downloaded from Google Play Store. Download size is about 20 MB.") },
         onDismissRequest = { state.value = false },
         confirmButton = {
             TextButton(
