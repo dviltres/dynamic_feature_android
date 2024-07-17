@@ -2,15 +2,12 @@ package com.dviltres.identity_verification.ui.fphiselphi.composables
 
 import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.dviltres.identity_verification.presentation.fphiselphi.model.FphiSelphiState
 import com.dviltres.identity_verification.ui.fphiselphi.FphiSelphiEvents
@@ -23,8 +20,6 @@ import com.facephi.fphiwidgetcore.WidgetResult
 import com.facephi.selphi.Widget
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
-import java.io.File
-import java.io.FileOutputStream
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -33,7 +28,6 @@ internal fun DisplayFphiSelphiCamera(
     events: FphiSelphiEvents
 ) {
     val context = LocalContext.current
-    val activity = (context as? Activity)
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
         val widgetResult = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             activityResult.data?.getParcelableExtra(
@@ -59,7 +53,7 @@ internal fun DisplayFphiSelphiCamera(
                 fullscreen = true
                 logImages(true)
             }
-            val fphiIntent = Intent(activity, Widget::class.java)
+            val fphiIntent = Intent(context, Widget::class.java)
             fphiIntent.putExtra(WIDGET_CONFIGURATION, conf)
             launcher.launch(Intent(fphiIntent))
         } else {

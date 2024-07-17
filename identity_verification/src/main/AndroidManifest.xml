@@ -19,5 +19,8 @@
             android:exported="true"
             android:name="com.facephi.selphi.Widget"
             android:screenOrientation="portrait" />
+        <activity
+            android:exported="true"
+            android:name=".ui.IdentityVerificationActivity" />
     </application>
 </manifest>
