@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "dynamic_feature_android"
 include ':app'
+include ':identity_verification'
