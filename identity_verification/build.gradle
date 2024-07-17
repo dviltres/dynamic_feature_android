@@ -1,0 +1,78 @@
+plugins {
+    alias(libs.plugins.android.dynamic.feature)
+    alias(libs.plugins.kotlin)
+    alias libs.plugins.kapt
+}
+android {
+    namespace 'com.dviltres.identity_verification'
+    compileSdk libs.versions.compileSdkVersion.get().toInteger()
+
+    defaultConfig {
+        minSdk = libs.versions.minSdkVersion.get().toInteger()
+        targetSdk = libs.versions.targetSdkVersion.get().toInteger()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    def jvm = JavaVersion.toVersion(libs.versions.jvm.get())
+    compileOptions {
+        sourceCompatibility = jvm
+        targetCompatibility = jvm
+    }
+    kotlinOptions {
+        jvmTarget = jvm
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.composeVersion.get()
+    }
+}
+
+dependencies {
+    //Selphi
+    implementation project(':app')
+    implementation(files("libs/fphi-selphi-widget-android.aar"))
+    implementation(files("libs/fphi-core-widget-android.aar"))
+    implementation(libs.bundles.accompanistBundle)
+    implementation(libs.appCompat)
+    implementation(libs.accompanistInsets)
+    implementation(libs.coreKtx)
+    implementation(libs.coroutinesAndroid)
+    implementation(libs.coroutinesCore)
+
+    implementation(libs.okhttp)
+    implementation(libs.okhttpInterceptor)
+    implementation(libs.retrofit)
+    implementation(libs.retrofitGson)
+    implementation(libs.composeMaterial3)
+    implementation(libs.datastore)
+    implementation(libs.gson)
+    implementation(libs.glide)
+    implementation(libs.glideLandscapist)
+    implementation(libs.glideCompiler)
+    implementation(libs.inject)
+    implementation(libs.espressoCore)
+    implementation(libs.testRules)
+
+    //Jetpack Compose Libraries
+    implementation(platform(libs.composeBom))
+    implementation(libs.composeNavigation)
+    implementation(libs.bundles.composeBomBundle)
+
+    //Kotlin
+    implementation(platform(libs.kotlinBom))
+    implementation(libs.bundles.kotlinBomBundle)
+
+    testImplementation(libs.kotlinTestJunit)
+    testImplementation(libs.bundles.testImplBundle)
+    androidTestImplementation(libs.bundles.androidTestImplBundle)
+
+}

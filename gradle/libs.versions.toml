@@ -112,6 +112,7 @@ kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinVersion" }
 application = { id = "com.android.application", version.ref = "agpVersion" }
 library = { id = "com.android.library", version.ref = "agpVersion" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektVersion" }
+android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agpVersion" }
 
 [bundles]
 kotlinBomBundle = [
